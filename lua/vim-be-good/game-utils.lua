@@ -1,4 +1,3 @@
-
 local difficultyToTime = {
     ["noob"] = 100000,
     ["easy"] = 10000,
@@ -48,7 +47,7 @@ local extraWords = {
     "zar",
 }
 
-local spaceByte = string.byte(' ')
+local spaceByte = string.byte(" ")
 
 local function compareTable(a, b)
     local found = true
@@ -145,6 +144,5 @@ return {
     getTime = getTime,
     compareTable = compareTable,
     trimString = trimString,
-    trimLines = trimLines
+    trimLines = trimLines,
 }
-

@@ -45,9 +45,7 @@ function Buffer:_scheduledOnLine()
     end
 
     for _, fn in ipairs(self.onChangeList) do
-
-        local ok, errMessage = pcall(
-            fn, buf, changedtick, firstline, lastline, linedata, more)
+        local ok, errMessage = pcall(fn, buf, changedtick, firstline, lastline, linedata, more)
 
         if not ok then
             log.info("Buffer:_scheduledOnLine: is not ok", errMessage)
@@ -74,12 +72,11 @@ end
 
 function Buffer:attach()
     vim.api.nvim_buf_attach(self.bufh, true, {
-        on_lines = bind(self, "onLine")
+        on_lines = bind(self, "onLine"),
     })
 end
 
 function Buffer:render(lines)
-
     local idx = 1
     local instructionLen = #self.instructions
     local lastRenderedLen = #self.lastRendered
@@ -89,13 +86,11 @@ function Buffer:render(lines)
     self.lastRendered = lines
 
     if self.debugLineStr ~= nil then
-        vim.api.nvim_buf_set_lines(
-            self.bufh, 0, 1, false, {self.debugLineStr})
+        vim.api.nvim_buf_set_lines(self.bufh, 0, 1, false, { self.debugLineStr })
     end
 
     if instructionLen > 0 then
-        vim.api.nvim_buf_set_lines(
-            self.bufh, idx, idx + instructionLen, false, self.instructions)
+        vim.api.nvim_buf_set_lines(self.bufh, idx, idx + instructionLen, false, self.instructions)
         idx = idx + instructionLen
     end
 
@@ -118,16 +113,14 @@ function Buffer:clearGameLines()
     local startOffset = table.getn(self.instructions) + 1
     local len = table.getn(self.lastRendered)
 
-    vim.api.nvim_buf_set_lines(
-        self.bufh, startOffset, startOffset + len, false, createEmpty(len))
+    vim.api.nvim_buf_set_lines(self.bufh, startOffset, startOffset + len, false, createEmpty(len))
 end
 
 function Buffer:getGameLines()
     local startOffset = table.getn(self.instructions) + 1
     local len = table.getn(self.lastRendered)
 
-    local lines = vim.api.nvim_buf_get_lines(
-        self.bufh, startOffset, startOffset + len, false)
+    local lines = vim.api.nvim_buf_get_lines(self.bufh, startOffset, startOffset + len, false)
 
     log.info("Buffer:getGameLines", startOffset, len, vim.inspect(lines))
 
@@ -137,8 +130,7 @@ end
 function Buffer:clear()
     local len = #self.lastRenderedInstruction + 1 + (#self.lastRendered or 0)
 
-    vim.api.nvim_buf_set_lines(
-        self.bufh, 0, len, false, createEmpty(len))
+    vim.api.nvim_buf_set_lines(self.bufh, 0, len, false, createEmpty(len))
 end
 
 function Buffer:onChange(cb)
@@ -146,7 +138,6 @@ function Buffer:onChange(cb)
 end
 
 function Buffer:removeListener(cb)
-
     local idx = 1
     local found = false
     while idx <= #self.onChangeList and found == false do
@@ -163,4 +154,3 @@ function Buffer:removeListener(cb)
 end
 
 return Buffer
-

@@ -17,6 +17,5 @@ local games = {
 
 return {
     difficulty = difficulty,
-    games = games
+    games = games,
 }
-

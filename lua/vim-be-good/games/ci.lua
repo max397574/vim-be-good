@@ -3,7 +3,7 @@ local log = require("vim-be-good.log")
 local gameLineCount = 20
 
 local instructions = {
-    "Replace the outer container (if (...) { ... } or [ ... ]) with \"bar\"",
+    'Replace the outer container (if (...) { ... } or [ ... ]) with "bar"',
     "",
     "e.g.:",
     "[                    [",
@@ -18,7 +18,7 @@ local instructions = {
 
 local CiRound = {}
 function CiRound:new(difficulty, window)
-   log.info("New", difficulty, window)
+    log.info("New", difficulty, window)
     local round = {
         window = window,
         difficulty = difficulty,
@@ -82,15 +82,15 @@ function CiRound:render()
         lines[insertionIndex] = "if (" .. self.config.randomWord .. ") {"
         lines[insertionIndex + 2] = "    if (" .. GameUtils.getRandomWord() .. ") { "
         lines[insertionIndex + 3] = "        " .. GameUtils.getRandomWord()
-        lines[insertionIndex + 4] = "    }";
-        lines[insertionIndex + 5] = "}";
+        lines[insertionIndex + 4] = "    }"
+        lines[insertionIndex + 5] = "}"
     else
-        lines[insertionIndex] = "[";
+        lines[insertionIndex] = "["
         lines[insertionIndex + 1] = "    " .. GameUtils.getRandomWord() .. ","
         lines[insertionIndex + 2] = "    " .. GameUtils.getRandomWord() .. ","
         lines[insertionIndex + 3] = "    " .. GameUtils.getRandomWord() .. ","
         lines[insertionIndex + 4] = "    " .. GameUtils.getRandomWord() .. ","
-        lines[insertionIndex + 5] = "]";
+        lines[insertionIndex + 5] = "]"
     end
 
     return lines, cursorIdx

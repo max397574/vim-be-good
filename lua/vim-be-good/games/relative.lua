@@ -12,7 +12,7 @@ local randomOffset = {
 
 local instructions = {
     "Test your ability to hop by relative line numbers",
-    "To win the game, delete the line that says \"DELETE_ME\"",
+    'To win the game, delete the line that says "DELETE_ME"',
 }
 
 local RelativeRound = {}
@@ -36,7 +36,7 @@ end
 function RelativeRound:getConfig()
     log.info("getConfig", self.difficulty, GameUtils.difficultyToTime[self.difficulty])
     return {
-        roundTime = GameUtils.difficultyToTime[self.difficulty]
+        roundTime = GameUtils.difficultyToTime[self.difficulty],
     }
 end
 
@@ -78,5 +78,3 @@ function RelativeRound:name()
 end
 
 return RelativeRound
-
-

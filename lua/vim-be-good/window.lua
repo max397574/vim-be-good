@@ -22,7 +22,6 @@ local function generateConfig(rowPadding, colPadding)
 end
 
 function WindowHandler:new(rowPadding, colPadding)
-
     local newWindow = {
         config = generateConfig(rowPadding, colPadding),
         rowPadding = rowPadding,
@@ -85,4 +84,3 @@ function WindowHandler:onResize()
 end
 
 return WindowHandler
-

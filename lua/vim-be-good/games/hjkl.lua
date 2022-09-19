@@ -7,7 +7,7 @@ local boardSizeOptions = {
     medium = 7,
     hard = 8,
     nightmare = 9,
-    tpope = 10
+    tpope = 10,
 }
 
 local instructions = {
@@ -35,7 +35,7 @@ end
 function HjklRound:getConfig()
     log.info("getConfig", self.difficulty, GameUtils.difficultyToTime[self.difficulty])
     return {
-        roundTime = GameUtils.difficultyToTime[self.difficulty]
+        roundTime = GameUtils.difficultyToTime[self.difficulty],
     }
 end
 
@@ -69,20 +69,19 @@ function HjklRound:render()
     local cursorCol = 1
     local cursorLine = 1
 
-    while (xLine == cursorLine or xCol == cursorCol ) do
+    while xLine == cursorLine or xCol == cursorCol do
         xCol = self:getRandomNumber(boardSize)
         xLine = self:getRandomNumber(boardSize)
         cursorCol = self:getRandomNumber(boardSize)
         cursorLine = self:getRandomNumber(boardSize)
     end
-    log.info("HjklRound:render      xLine: ", xLine,      "      xCol: ", xCol)
+    log.info("HjklRound:render      xLine: ", xLine, "      xCol: ", xCol)
     log.info("HjklRound:render cursorLine: ", cursorLine, " cursorCol: ", cursorCol)
 
     local idx = 1
     while idx <= #lines do
         local line = lines[idx]
-        for i = 1, boardSize,1
-        do
+        for i = 1, boardSize, 1 do
             if xLine == idx and xCol == i then
                 line = line .. "x"
             else
@@ -101,5 +100,3 @@ function HjklRound:name()
 end
 
 return HjklRound
-
-
