@@ -51,41 +51,16 @@ character's case to complete the round.
 
 ## Installation
 
-## MUST USE NEOVIM 5.x!!!!!!
-
 1. Use your favorite plugin manager to install! Only works on Nvim, the one true
    vim.
 
-```viml
-Plug 'ThePrimeagen/vim-be-good'
-```
-
-### Docker
-
-If you would like, you can use docker to run the game. Doing this will
-automatically use the correct version of neovim for you, as well as run the
-game immediately when neovim starts.
-
-#### Stable image
-
-[This image](https://github.com/brandoncc/docker-vim-be-good/blob/master/stable/Dockerfile) always runs the version of the game that was bundled when the image
-was built. Images are generally built within one day of the main branch
-receiving new commits, but you won't get the new images unless you manually run
-`docker pull brandoncc/vim-be-good:stable` periodically.
-
-```bash
-docker run -it --rm brandoncc/vim-be-good:stable
-```
-
-#### "Latest" image
-
-[This image](https://github.com/brandoncc/docker-vim-be-good/blob/master/latest/Dockerfile) runs `:PlugUpdate` before running neovim. This adds about one second
-to the startup time of the game. The trade-off is that you are always playing
-the latest version of the game, as long as your machine is able to access
-Github.com to pull it.
-
-```bash
-docker run -it --rm brandoncc/vim-be-good:latest
+```lua
+use({
+    "max397574/vim-be-good",
+    config=function()
+        require"vim-be-good".setup()
+    end
+})
 ```
 
 ## Playing the games.

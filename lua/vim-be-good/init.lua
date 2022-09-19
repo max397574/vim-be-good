@@ -104,4 +104,17 @@ function vimbegood.menu()
     createMenu()
 end
 
+function vimbegood.setup()
+    vim.api.nvim_create_user_command("VimBeGood", function()
+        vimbegood.menu()
+    end, { desc = "Start Vim-be-good" })
+end
+
+vim.api.nvim_create_autocmd("VimResized", {
+    callback = function()
+        vimbegood.onVimResize()
+    end,
+    group = vim.api.nvim_create_augroup("VimBeGood", {}),
+})
+
 return vimbegood
